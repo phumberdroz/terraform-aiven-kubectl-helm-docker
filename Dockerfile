@@ -23,6 +23,7 @@ RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-
     grep '"tag_name":' |                                                 \
     sed -E 's/.*"([^"]+)".*/\1/') && \
     curl -sOL "https://github.com/aiven/terraform-provider-aiven/releases/download/"$AIVEN_VERSION'/terraform-provider-aiven-linux_amd64' && \
+    chmod +x ./terraform-provider-aiven-linux_amd64 && \
     mv terraform-provider-aiven-linux_amd64 ~/.terraform.d/plugins/linux_amd64/terraform-provider-aiven_$AIVEN_VERSION
 
 # Helm
