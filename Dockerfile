@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ENV TERRAFORM_VERSION=0.11.13
 RUN apt-get update && \
-    apt-get install -y curl ca-certificates unzip --no-install-recommends && \
+    apt-get install -y curl ca-certificates unzip git --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir $HOME/.kube && \
     mkdir $HOME/.helm && \
@@ -27,5 +27,4 @@ RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-
     mv terraform-provider-aiven-linux_amd64 ~/.terraform.d/plugins/linux_amd64/terraform-provider-aiven_$AIVEN_VERSION
 
 # Helm
-RUN curl -L https://git.io/get_helm.sh | bash && \
-    helm plugin install https://github.com/rimusz/helm-tiller
+RUN curl -L https://git.io/get_helm.sh | bash
