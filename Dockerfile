@@ -27,4 +27,7 @@ RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-
     mv terraform-provider-aiven-linux_amd64 ~/.terraform.d/plugins/linux_amd64/terraform-provider-aiven_$AIVEN_VERSION
 
 # Helm
-RUN curl -L https://git.io/get_helm.sh | bash
+RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
+    tar -zxvf helm-v2.13.1-linux-amd64.tar.gz && \
+    mv linux-amd64/helm linux-amd64/tiller /usr/local/bin/ && \
+    rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz
