@@ -3,6 +3,5 @@
 Contains
 - Terraform
 - Terraform Aiven Provider
-- Helm
-- Helm tillerless
+- Helm @2.13.1
 - kubectl
