@@ -20,7 +20,7 @@ RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
 
 # Terraform Provider Aiven
 RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-provider-aiven/releases/latest" | \
-    grep '"tag_name":' |                                                 \
+    grep '"tag_name":' | \
     sed -E 's/.*"([^"]+)".*/\1/') && \
     curl -sOL "https://github.com/aiven/terraform-provider-aiven/releases/download/"$AIVEN_VERSION'/terraform-provider-aiven-linux_amd64' && \
     chmod +x ./terraform-provider-aiven-linux_amd64 && \
@@ -31,3 +31,11 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-a
     tar -zxvf helm-v2.13.1-linux-amd64.tar.gz && \
     mv linux-amd64/helm linux-amd64/tiller /usr/local/bin/ && \
     rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz
+
+# helmfile
+RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfile/releases/latest" | \
+    grep '"tag_name":' | \
+    sed -E 's/.*"([^"]+)".*/\1/') && \
+    curl -sOL "https://github.com/roboll/helmfile/releases/download/"$HELMFILE_VERSION'/helmfile_linux_amd64' && \
+    chmod +x ./helmfile_linux_amd64 && \
+    mv helmfile_linux_amd64 /usr/local/bin/helmfile
