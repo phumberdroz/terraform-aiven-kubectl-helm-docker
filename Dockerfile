@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir $HOME/.kube && \
     mkdir $HOME/.helm && \
+    mkdir $HOME/.helm/plugins && \
     mkdir -p ~/.terraform.d/plugins/linux_amd64/
 
 # Kubectl
@@ -30,7 +31,9 @@ RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-
 RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
     tar -zxvf helm-v2.13.1-linux-amd64.tar.gz && \
     mv linux-amd64/helm linux-amd64/tiller /usr/local/bin/ && \
-    rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz
+    rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz && \
+    helm plugin install https://github.com/databus23/helm-diff && \
+    helm plugin install https://github.com/rimusz/helm-tiller
 
 # helmfile
 RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfile/releases/latest" | \
