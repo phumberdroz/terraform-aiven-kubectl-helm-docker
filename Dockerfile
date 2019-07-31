@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV TERRAFORM_VERSION=0.11.13
+ENV TERRAFORM_VERSION=0.12.5
 RUN apt-get update && \
     apt-get install -y curl ca-certificates unzip git --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
