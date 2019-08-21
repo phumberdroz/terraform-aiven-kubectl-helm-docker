@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV TERRAFORM_VERSION=0.12.5
+ENV TERRAFORM_VERSION=0.12.6
 RUN apt-get update && \
     apt-get install -y curl ca-certificates unzip git --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -34,7 +34,6 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-a
     rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz && \
     helm plugin install https://github.com/databus23/helm-diff && \
     helm plugin install https://github.com/rimusz/helm-tiller
-
 # helmfile
 RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfile/releases/latest" | \
     grep '"tag_name":' | \
