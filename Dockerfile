@@ -28,12 +28,11 @@ RUN AIVEN_VERSION=$(curl --silent "https://api.github.com/repos/aiven/terraform-
     mv terraform-provider-aiven-linux_amd64 ~/.terraform.d/plugins/linux_amd64/terraform-provider-aiven_$AIVEN_VERSION
 
 # Helm
-RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && \
-    tar -zxvf helm-v2.13.1-linux-amd64.tar.gz && \
-    mv linux-amd64/helm linux-amd64/tiller /usr/local/bin/ && \
-    rm -rf linux-amd64 helm-v2.13.1-linux-amd64.tar.gz && \
-    helm plugin install https://github.com/databus23/helm-diff && \
-    helm plugin install https://github.com/rimusz/helm-tiller
+RUN curl -LO https://get.helm.sh/helm-v3.0.1-linux-amd64.tar.gz && \
+    tar -zxvf helm-v3.0.1-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/local/bin/ && \
+    rm -rf linux-amd64 helm-v3.0.1-linux-amd64.tar.gz && \
+    helm plugin install https://github.com/databus23/helm-diff
 # helmfile
 RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfile/releases/latest" | \
     grep '"tag_name":' | \
