@@ -3,8 +3,7 @@
 Contains
 - Terraform
 - Terraform Aiven Provider
-- Helm @2.13.1
+- Helm @3.0.1
 - helmfile
-- helm tiller
 - helm diff
 - kubectl
