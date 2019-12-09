@@ -32,7 +32,7 @@ RUN curl -LO https://get.helm.sh/helm-v3.0.1-linux-amd64.tar.gz && \
     tar -zxvf helm-v3.0.1-linux-amd64.tar.gz && \
     mv linux-amd64/helm /usr/local/bin/ && \
     rm -rf linux-amd64 helm-v3.0.1-linux-amd64.tar.gz && \
-    helm plugin install https://github.com/databus23/helm-diff
+    helm plugin install https://github.com/databus23/helm-diff --version v3.0.0-rc.7
 # helmfile
 RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfile/releases/latest" | \
     grep '"tag_name":' | \
