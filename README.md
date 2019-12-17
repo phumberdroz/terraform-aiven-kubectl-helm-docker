@@ -7,3 +7,5 @@ Contains
 - helmfile
 - helm diff
 - kubectl
+- azure cli
+- jq

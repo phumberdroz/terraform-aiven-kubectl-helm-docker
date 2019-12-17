@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ENV TERRAFORM_VERSION=0.12.6
 RUN apt-get update && \
-    apt-get install -y curl ca-certificates unzip git --no-install-recommends && \
+    apt-get install -y curl ca-certificates unzip git jq --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir $HOME/.kube && \
     mkdir $HOME/.helm && \
@@ -40,3 +40,4 @@ RUN HELMFILE_VERSION=$(curl --silent "https://api.github.com/repos/roboll/helmfi
     curl -sOL "https://github.com/roboll/helmfile/releases/download/"$HELMFILE_VERSION'/helmfile_linux_amd64' && \
     chmod +x ./helmfile_linux_amd64 && \
     mv helmfile_linux_amd64 /usr/local/bin/helmfile
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
